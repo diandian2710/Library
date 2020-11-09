@@ -11,18 +11,10 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/login',
-      name: 'Login',
-      component: Login
-    },
-    {
       path: '/',
-      name: 'index',
-      redirect: '/index',
-      component: AppIndex,
-      meta: {
-        requireAuth: true
-      }
+      name: 'Default',
+      redirect: '/home',
+      component: Home,
     },
     {
       path: '/home',
@@ -34,19 +26,18 @@ export default new Router({
           path: '/index', // // 要注意，以 / 开头的嵌套路径会被当作根路径,这让你充分的使用嵌套组件而无须设置嵌套的路径。
           name: 'AppIndex',
           component: AppIndex,
-          meta: {
-            requireAuth: true
-          }
         },
         {
           path: '/library',
           name: 'Library',
           component: LibraryIndex,
-          meta: {
-            requireAuth: true
-          }
         }
       ]
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: () => import('../components/Login')
     },
     {
       path: '/register',
@@ -59,7 +50,7 @@ export default new Router({
       component: ()=>import('../components/admin/AdminIndex'),
       meta: {
         requireAuth: true
-      }
+      },
     },
     {
       path: '*',
