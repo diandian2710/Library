@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
+import mavonEditor from 'mavon-editor'
 
 import {
   Pagination,
@@ -111,6 +112,7 @@ Vue.use(TimelineItem)
 Vue.use(Link)
 Vue.use(Divider)
 Vue.use(Image)
+Vue.use(mavonEditor)
 
 Vue.use(Loading.directive)
 
@@ -134,11 +136,11 @@ router.beforeEach((to, from, next) => {
     if (store.state.user.username && to.path.startsWith('/admin')) {
       initAdminMenu(router, store)
     }
-    // if (store.state.username && to.path.startsWith('/login')) {
-    //   next({
-    //     name: 'Dashboard'
-    //   })
-    // }
+    if (store.state.user.username && to.path.startsWith('/login')) {
+      next({
+        name: 'Dashboard'
+      })
+    }
     // 如果前端没有登录信息则直接拦截，如果有则判断后端是否正常登录（防止构造参数绕过）
     if (to.meta.requireAuth) {
       if (store.state.user.username) {

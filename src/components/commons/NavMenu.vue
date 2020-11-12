@@ -34,7 +34,7 @@ export default {
         {name: '/index', navItem: 'Main Page'},
         {name: '/jotter', navItem: 'Note Book'},
         {name: '/library', navItem: 'Library'},
-        {name: '/login', navItem: 'Setting'}
+        {name: '/login', navItem: 'Admin'}
       ],
       keywords: ''
     }
@@ -45,6 +45,7 @@ export default {
     },
     currentPath () {
       var x = this.$route.path.indexOf('/', 1)
+      console.log('==========>'+x)
       if (x !== -1) {
         return this.$route.path.substring(0, x)
       } else {
