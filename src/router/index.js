@@ -53,6 +53,14 @@ export default new Router({
       },
     },
     {
+      path: '/admin/content/editor',
+      name: 'Editor',
+      component: () => import('../components/admin/content/ArticleEditor'),
+      meta: {
+        requireAuth: true
+      }
+    },
+    {
       path: '*',
       component: ()=>import('../components/pages/Error404')
     }

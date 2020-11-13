@@ -85,7 +85,7 @@
     data () {
       return {
         articles: [],
-        pageSize: 10,
+        pageSize: 5,
         total: 0
       }
     },
@@ -103,7 +103,7 @@
         this.$axios.get('/article/' + this.pageSize + '/1').then(resp => {
           if (resp && resp.data.code === 200) {
             _this.articles = resp.data.result.content
-            _this.total = resp.data.result.totalElements
+            _this.total = resp.data.result.totalSize
           }
         })
       },
@@ -112,7 +112,7 @@
         this.$axios.get('/article/' + this.pageSize + '/' + page).then(resp => {
           if (resp && resp.data.code === 200) {
             _this.articles = resp.data.result.content
-            _this.total = resp.data.result.totalElements
+            _this.total = resp.data.result.totalSize
           }
         })
       },
