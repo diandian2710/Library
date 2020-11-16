@@ -31,6 +31,24 @@ export default new Router({
           path: '/library',
           name: 'Library',
           component: LibraryIndex,
+        },
+        {
+          path: '/jotter',
+          name: 'Jotter',
+          component: () => import('../components/jotter/Articles')
+        },
+        {
+          path: '/jotter/article',
+          name: 'Article',
+          component: () => import('../components/jotter/ArticleDetails')
+        },
+        {
+          path: '/admin/content/editor',
+          name: 'Editor',
+          component: () => import('../components/admin/content/ArticleEditor'),
+          meta: {
+            requireAuth: true
+          }
         }
       ]
     },
@@ -51,14 +69,6 @@ export default new Router({
       meta: {
         requireAuth: true
       },
-    },
-    {
-      path: '/admin/content/editor',
-      name: 'Editor',
-      component: () => import('../components/admin/content/ArticleEditor'),
-      meta: {
-        requireAuth: true
-      }
     },
     {
       path: '*',
@@ -85,14 +95,32 @@ export const createRouter = routes => new Router({
       redirect: '/index',
       children: [
         {
-          path: '/index',
+          path: '/index', // // 要注意，以 / 开头的嵌套路径会被当作根路径,这让你充分的使用嵌套组件而无须设置嵌套的路径。
           name: 'AppIndex',
-          component: () => import('../components/home/AppIndex')
+          component: AppIndex,
         },
         {
           path: '/library',
           name: 'Library',
-          component: () => import('../components/library/LibraryIndex')
+          component: LibraryIndex,
+        },
+        {
+          path: '/jotter',
+          name: 'Jotter',
+          component: () => import('../components/jotter/Articles')
+        },
+        {
+          path: '/jotter/article',
+          name: 'Article',
+          component: () => import('../components/jotter/ArticleDetails')
+        },
+        {
+          path: '/admin/content/editor',
+          name: 'Editor',
+          component: () => import('../components/admin/content/ArticleEditor'),
+          meta: {
+            requireAuth: true
+          }
         }
       ]
     },
@@ -114,6 +142,7 @@ export const createRouter = routes => new Router({
         requireAuth: true
       },
     },
+
     {
       path: '*',
       component: () => import('../components/pages/Error404')

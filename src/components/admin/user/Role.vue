@@ -1,21 +1,21 @@
 <template>
   <div>
     <el-dialog
-      title="修改角色信息"
+      title="edit role info"
       :visible.sync="dialogFormVisible">
       <el-form v-model="selectedRole" style="text-align: left" ref="dataForm">
-        <el-form-item label="角色名" label-width="120px" prop="username">
+        <el-form-item label="role name" label-width="120px" prop="username">
           <el-input v-model="selectedRole.name" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="角色描述" label-width="120px" prop="name">
+        <el-form-item label="role description" label-width="120px" prop="name">
           <el-input v-model="selectedRole.nameZh" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="功能配置" label-width="120px" prop="perms">
+        <el-form-item label="permission" label-width="120px" prop="perms">
           <el-checkbox-group v-model="selectedPermsIds">
             <el-checkbox v-for="(perm,i) in perms" :key="i" :label="perm.id">{{perm.desc}}</el-checkbox>
           </el-checkbox-group>
         </el-form-item>
-        <el-form-item label="菜单配置" label-width="120px" prop="menus">
+        <el-form-item label="menus" label-width="120px" prop="menus">
           <el-tree
             :data="menus"
             :props="props"
@@ -27,15 +27,15 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="onSubmit(selectedRole)">确 定</el-button>
+        <el-button @click="dialogFormVisible = false">exit</el-button>
+        <el-button type="primary" @click="onSubmit(selectedRole)">confirm</el-button>
       </div>
     </el-dialog>
     <el-row style="margin: 18px 0px 0px 18px ">
       <el-breadcrumb separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item :to="{ path: '/admin/dashboard' }">管理中心</el-breadcrumb-item>
-        <el-breadcrumb-item>用户管理</el-breadcrumb-item>
-        <el-breadcrumb-item>角色配置</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/admin/dashboard' }">Dashboard</el-breadcrumb-item>
+        <el-breadcrumb-item>User Management</el-breadcrumb-item>
+        <el-breadcrumb-item>Role Information</el-breadcrumb-item>
       </el-breadcrumb>
     </el-row>
     <role-create @onSubmit="listRoles()"></role-create>
@@ -56,16 +56,16 @@
         </el-table-column>
         <el-table-column
           prop="name"
-          label="角色名"
+          label="role name"
           fit>
         </el-table-column>
         <el-table-column
           prop="nameZh"
-          label="角色描述"
+          label="role description"
           fit>
         </el-table-column>
         <el-table-column
-          label="状态"
+          label="status"
           width="100">
           <template slot-scope="scope">
             <el-switch
@@ -77,26 +77,26 @@
           </template>
         </el-table-column>
         <el-table-column
-          label="操作"
+          label="modify"
           width="120">
           <template slot-scope="scope">
             <el-button
               type="text"
               size="small"
               @click="editRole(scope.row)">
-              编辑
+              edit
             </el-button>
             <el-button
               type="text"
               size="small">
-              移除
+              remove
             </el-button>
           </template>
         </el-table-column>
       </el-table>
       <div style="margin: 20px 0 20px 0;float: left">
-        <el-button>取消选择</el-button>
-        <el-button>批量删除</el-button>
+        <el-button>cancel selection</el-button>
+        <el-button>batch deletion</el-button>
       </div>
     </el-card>
   </div>
@@ -161,9 +161,9 @@ export default {
     },
     commitStatusChange (value, role) {
       if (role.id !== 1) {
-        this.$confirm('是否更改角色状态？', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
+        this.$confirm('do you want to change status', 'remind', {
+          confirmButtonText: 'yes',
+          cancelButtonText: 'no',
           type: 'warning'
         }).then(() => {
           this.$axios.put('/admin/role/status', {
@@ -172,9 +172,9 @@ export default {
           }).then(resp => {
             if (resp && resp.data.code === 200) {
               if (value) {
-                this.$message('角色 [' + role.nameZh + '] 已启用')
+                this.$message('role [' + role.nameZh + '] was used')
               } else {
-                this.$message('角色 [' + role.nameZh + '] 已禁用')
+                this.$message('role [' + role.nameZh + '] was prevented')
               }
             }
           })
@@ -182,12 +182,12 @@ export default {
           role.enabled = !role.enabled
           this.$message({
             type: 'info',
-            message: '已取消'
+            message: 'cancel'
           })
         })
       } else {
         role.enabled = true
-        this.$alert('无法禁用系统管理员！')
+        this.$alert('cannot change admin status')
       }
     },
     editRole (role) {

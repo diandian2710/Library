@@ -1,8 +1,8 @@
 <template>
   <div style="text-align: left">
-    <el-button class="add-button" type="success" @click="dialogFormVisible = true">添加角色</el-button>
+    <el-button class="add-button" type="success" @click="dialogFormVisible = true">add role</el-button>
     <el-dialog
-      title="添加角色"
+      title="add role"
       :visible.sync="dialogFormVisible"
       @close="clear"
       width="25%">
@@ -10,17 +10,17 @@
                label-width="0px" v-loading="loading">
         <el-form-item prop="name">
           <el-input type="text" v-model="roleForm.name"
-                    auto-complete="off" placeholder="角色名"></el-input>
+                    auto-complete="off" placeholder="role name"></el-input>
         </el-form-item>
         <el-form-item prop="nameZh">
           <el-input type="text" v-model="roleForm.nameZh"
-                    auto-complete="off" placeholder="角色描述"></el-input>
+                    auto-complete="off" placeholder="role description"></el-input>
         </el-form-item>
         <el-form-item style="width: 100%">
-          <el-button type="primary" style="width: 40%;background: #505458;border: none" v-on:click="createRole">添加</el-button>
+          <el-button type="primary" style="width: 40%;background: #505458;border: none" v-on:click="createRole">add</el-button>
         </el-form-item>
         <el-form-item prop="username">
-          <el-tag>初始权限：无</el-tag>
+          <el-tag>initial permission: none</el-tag>
         </el-form-item>
       </el-form>
     </el-dialog>
@@ -34,7 +34,7 @@
       return {
         dialogFormVisible: false,
         rules: {
-          name: [{required: true, message: '角色名不能为空', trigger: 'blur'}]
+          name: [{required: true, message: 'role name cannot be null', trigger: 'blur'}]
         },
         checked: true,
         roleForm: {
@@ -59,14 +59,14 @@
           })
           .then(resp => {
             if (resp.data.code === 200) {
-              this.$alert(resp.data.result, '提示', {
-                confirmButtonText: '确定'
+              this.$alert(resp.data.result, 'remind', {
+                confirmButtonText: 'confirm'
               })
               this.clear()
               this.$emit('onSubmit')
             } else {
-              this.$alert(resp.data.message, '提示', {
-                confirmButtonText: '确定'
+              this.$alert(resp.data.message, 'remind', {
+                confirmButtonText: 'confirm'
               })
             }
           })

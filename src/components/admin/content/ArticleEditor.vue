@@ -2,17 +2,17 @@
   <div>
     <el-row style="margin: 18px 0px 0px 18px ">
       <el-breadcrumb separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item :to="{ path: '/admin/dashboard'}">管理中心</el-breadcrumb-item>
-        <el-breadcrumb-item :to="{ path: '/admin/content/book'}">内容管理</el-breadcrumb-item>
-        <el-breadcrumb-item :to="{ path: '/admin/content/article'}">文章管理</el-breadcrumb-item>
-        <el-breadcrumb-item>编辑器</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/admin/dashboard'}">Dashboard</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/admin/content/book'}">Content Management</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/admin/content/article'}">Article Management</el-breadcrumb-item>
+        <el-breadcrumb-item>Editor</el-breadcrumb-item>
       </el-breadcrumb>
     </el-row>
     <el-row>
       <el-input
         v-model="article.articleTitle"
         style="margin: 10px 0px;font-size: 18px;"
-        placeholder="请输入标题"></el-input>
+        placeholder="Please input your title"></el-input>
     </el-row>
     <el-row style="height: calc(100vh - 140px);">
       <mavon-editor

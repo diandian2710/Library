@@ -1,9 +1,9 @@
 <template>
   <div class="footer">
     <div style="border-top:1px #1F1F1F solid;">
-      <p class="alt" style="color:#999; line-height:0">&copy; 版权所有：Evan-Nightly &nbsp;
-        <span>技术支持：</span>
-        <a href="" target="_blank" style="color:#999;">Evan & MMK</a>
+      <p class="alt" style="color:#999; line-height:0">&copy; Copyright-Neil Wang &nbsp;
+        <span>Technical Support:</span>
+        <a href="" target="_blank" style="color:#999;">Neil</a>
       </p>
     </div>
   </div>
@@ -37,7 +37,8 @@ span {
   overflow: hidden;
   padding: 20px 0;
   width: 1160px;
-  margin: auto;
+  margin: 10px;
+  text-align: left;
 }
 .footer .alt .foot {
   width: 138px;

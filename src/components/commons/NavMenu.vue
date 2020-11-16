@@ -1,5 +1,3 @@
-
-
 <template>
   <div>
     <el-menu
@@ -14,7 +12,7 @@
         {{ item.navItem }}
       </el-menu-item>
       <el-input
-        placeholder="快速搜索..."
+        placeholder="search..."
         prefix-icon="el-icon-search"
         size="medium"
         style="width: 300px;position:absolute;margin-top: 12px;right: 18%"
@@ -34,7 +32,7 @@ export default {
         {name: '/index', navItem: 'Main Page'},
         {name: '/jotter', navItem: 'Note Book'},
         {name: '/library', navItem: 'Library'},
-        {name: '/login', navItem: 'Admin'}
+        {name: '/admin', navItem: 'Admin'}
       ],
       keywords: ''
     }
@@ -45,7 +43,7 @@ export default {
     },
     currentPath () {
       var x = this.$route.path.indexOf('/', 1)
-      console.log('==========>'+x)
+      console.log('current path is==========>' + x)
       if (x !== -1) {
         return this.$route.path.substring(0, x)
       } else {

@@ -2,13 +2,13 @@
   <div style="margin-bottom: 30px;display: flex;justify-content: center;align-items: center">
     <el-input
       @keyup.enter.native="searchClick"
-      placeholder="通过书名或作者搜索..."
+      placeholder="search by author name or book name..."
       prefix-icon="el-icon-search"
       size="small"
       style="width: 400px;margin-right: 10px"
       v-model="keywords">
     </el-input>
-    <el-button size="small" type="primary" icon="el-icon-search" @click="searchClick">搜索</el-button>
+    <el-button size="small" type="primary" icon="el-icon-search" @click="searchClick">Search</el-button>
   </div>
 </template>
 
