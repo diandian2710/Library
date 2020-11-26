@@ -128,7 +128,6 @@ var axios = require('axios')
 axios.defaults.baseURL = 'http://localhost:8443/api'
 // 使请求带上凭证信息
 axios.defaults.withCredentials = true
-
 Vue.prototype.$axios = axios
 Vue.config.productionTip = false
 

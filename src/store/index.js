@@ -13,13 +13,13 @@ export default new Vuex.Store({
     initAdminMenu (state, menus) {
       state.adminMenus = menus
     },
-    login (state, user) {
-      state.user = user
-      window.localStorage.setItem('user', JSON.stringify(user))
+    login (state, data) {
+      state.user.username = data
+      window.localStorage.setItem('username', JSON.stringify(data))
     },
     logout(state){
       state.user = []
-      window.localStorage.removeItem('user')
+      window.localStorage.removeItem('username')
     }
   }
 })

@@ -12,7 +12,8 @@
                 auto-complete="off" placeholder="密码"></el-input>
     </el-form-item>
     <el-form-item style="width: 100%">
-      <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="login">登录</el-button>
+      <el-button type="primary" style="width: 40%;background: #505458;border: none" v-on:click="login">登录</el-button>
+      <router-link to="register"><el-button type="primary" style="width: 40%;background: #505458;border: none">注册</el-button></router-link>
     </el-form-item>
   </el-form>
   </body>
@@ -40,12 +41,17 @@ export default {
           username: this.loginForm.username,
           password: this.loginForm.password
         })
-        .then(successResponse => {
-          if (successResponse.data.code === 200) {
-            // var data = this.loginForm
-            _this.$store.commit('login', _this.loginForm)
-            var path = this.$route.query.redirect
+        .then(resp => {
+          if (resp.data.code === 200) {
+            var data = resp.data.result
+            console.log('the username is=======>' + data)
+            _this.$store.commit('login', data)
+            var path = _this.$route.query.redirect
             this.$router.replace({path: path === '/' || path === undefined ? '/index' : path})
+          } else {
+            this.$alert(resp.data.message, '提示', {
+              confirmButtonText: '确定'
+            })
           }
         })
         .catch(failResponse => {
